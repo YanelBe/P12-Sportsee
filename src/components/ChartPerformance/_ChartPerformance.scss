@@ -1,0 +1,9 @@
+.performance-chart{
+    background-color: $key-data-color;
+    @include border-radius-small;
+    @include small-chart-dimension;
+  }
+
+.recharts-text .recharts-polar-angle-axis-tick-value {
+  margin: -5em;
+}

@@ -1,0 +1,39 @@
+.score-chart {
+    @include flex-center;
+    @include border-radius-small;
+    @include small-chart-dimension;
+    position: relative;
+    background-color: $tertiary-color;
+
+    &__title {
+        @include font(15px, 500);
+        position: absolute;
+        margin: 0;
+        top: 24px;
+        left: 24px;
+    }
+
+    &__container {
+        @include width-height-max;
+    }
+
+    &__objective{
+        position: absolute;
+        text-align: center;
+        top: 36%;
+        width: 100%;
+
+        &__text {
+            @include font(16px, 500);
+            color: $key-type-color;
+            text-align: center;
+            margin: 0;
+        }
+
+        &__number {
+            @include font(26px, 700);
+            color: $key-data-color;
+            margin: 0;
+        }
+    }
+}

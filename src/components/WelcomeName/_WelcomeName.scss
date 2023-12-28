@@ -1,0 +1,15 @@
+.welcome{
+    @include font(48px, 500);
+    
+    &__container {
+        margin: 10px 0;
+
+        &__name {
+            color: #FF0000;
+        }
+
+        &__congrats{
+            @include font(18px, 500);
+        }
+    }
+}

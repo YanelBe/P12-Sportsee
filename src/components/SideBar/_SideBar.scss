@@ -1,0 +1,30 @@
+.sidebar {
+    @include flex-center;
+    flex-direction: column;
+    width: 117px;
+    background-color: #020203;
+    position: relative;
+  
+    img {
+      margin: 10px;
+    }
+
+    &__image-container{
+      @include flex-center;
+      flex-direction: column;
+      width: 80px;
+      height: 100%;
+      background-color: #020203;
+    }
+
+    &__copyright{
+      display: flex;
+      color: white;
+      @include font(12px, 500);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      position: absolute;
+      bottom: 45px;
+    }
+
+  }
