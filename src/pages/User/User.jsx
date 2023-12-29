@@ -31,7 +31,7 @@ export default function User() {
     const [userPerformance, setUserPerformance] = useState();
 
     //Toggle entre données mock et l'appel à l'API
-    const datasMocked = true; 
+    const datasMocked = false; 
   
     useEffect(() => {
 
@@ -70,7 +70,7 @@ export default function User() {
             setUserActivity(currentUserActivity);
             setUserSessionDuration(currentUserSessionDuration);
             setUserPerformance(currentUserPerformance);
-            
+
         //Else, appel à l'API
           } else {
             const [
