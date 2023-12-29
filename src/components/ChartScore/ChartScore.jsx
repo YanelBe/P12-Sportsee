@@ -38,7 +38,7 @@ export default function ChartScore({ dataScore }){
 						dataKey="score"
 						data={[{ score: 1 }]}
 						barSize={170}
-						fill="#FFF"
+						fill="#FFFFFF"
 						isAnimationActive={false}
 					/>
                     {/*Cette RadialBar affiche la barre rouge de progression*/}

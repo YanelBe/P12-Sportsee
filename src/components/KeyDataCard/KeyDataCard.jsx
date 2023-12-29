@@ -16,10 +16,9 @@ export default function KeyDataCard({id, icon, keyDataUnit, keyDataType}){
     )
 }
 
-KeyDataCard.propTypes={
+KeyDataCard.propTypes = {
     id: PropTypes.number.isRequired,
     icon: PropTypes.string.isRequired,
     keyDataUnit: PropTypes.array.isRequired,
     keyDataType: PropTypes.string.isRequired,
-    
 }

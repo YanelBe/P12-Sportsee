@@ -22,7 +22,7 @@ export default function ChartDailyActivity({dataActivity}){
             <ResponsiveContainer width="100%" height="100%" >
                 <BarChart 
                     data={dataActivity}
-                    margin={{ top: 10, right: 0, left: 0, bottom: 10 }}
+                    margin={{ top: 10, right: 10, left: 10, bottom: 20 }}
                     barGap={10}
                     >
                     {/*CartesianGrid contrôle les pointillés à chaque valeur du YAxis*/}
@@ -39,7 +39,7 @@ export default function ChartDailyActivity({dataActivity}){
                         tickSize="0" 
                         tickMargin="25" 
                         stroke="#9B9EAC" />
-                    {/*Le premier YAxis, à droite, */}
+                    {/*Le premier YAxis, à droite, avec les valeurs du poids*/}
                     <YAxis className="activity-chart__YAxis"
                         dataKey="kilogram"
                         yAxisId="right"

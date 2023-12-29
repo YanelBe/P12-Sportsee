@@ -1,8 +1,9 @@
 .sidebar {
     @include flex-center;
+    justify-content: space-around;
     flex-direction: column;
     width: 117px;
-    background-color: #020203;
+    background-color: $nav-color;
     position: relative;
   
     img {
@@ -12,19 +13,19 @@
     &__image-container{
       @include flex-center;
       flex-direction: column;
-      width: 80px;
-      height: 100%;
-      background-color: #020203;
+      background-color: $nav-color;
+      position: relative;
+      top: 120px;
     }
 
     &__copyright{
       display: flex;
-      color: white;
       @include font(12px, 500);
+      color: white;
       writing-mode: vertical-rl;
       transform: rotate(180deg);
-      position: absolute;
-      bottom: 45px;
+      position: relative;
+      top: 45px;
     }
 
   }

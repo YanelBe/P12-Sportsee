@@ -1,7 +1,7 @@
 .session-length {
     display: flex;
     flex-direction: column;
-    background-color: #FF0000;
+    background-color: $primary-color;
     @include border-radius-small;
     @include small-chart-dimension;
     position: relative;
@@ -12,7 +12,7 @@
 
       &__title {
         @include font(15px, 500);
-        color: #FFFFFF;
+        color: white;
         opacity: 0.5;
         width: 150px;
         margin-left: 20px;
@@ -23,10 +23,10 @@
 
       &__tooltip {
         @include flex-center;
+        @include font(12px, 500);
+        background-color: white;
         width: 40px;
         height: 25px;
-        background-color: #FFFFFF;
-        @include font(12px, 500);
       }
     }
   }

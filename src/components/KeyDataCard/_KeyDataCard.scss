@@ -1,17 +1,16 @@
 .key-data-container {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     padding-left: 2%;
     justify-content: space-between;
 
     &__card {
         @include flex-center;
         @include border-radius-small;
-        justify-content: flex-start;
         background-color: $tertiary-color;
-        padding: 20%;
-        width: 256px;
-        height: 104px;
+        justify-content: flex-start;
+        padding-left: 30px;
+        width: 258px;
+        height: 124px;
     }
 
     &__text {

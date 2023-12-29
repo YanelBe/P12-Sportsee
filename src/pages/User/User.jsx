@@ -31,9 +31,15 @@ export default function User() {
     const [userPerformance, setUserPerformance] = useState();
 
     //Toggle entre données mock et l'appel à l'API
-    const datasMocked = false; 
+    const datasMocked = true; 
   
     useEffect(() => {
+
+
+      /**
+       * fetchData - Récupère les données en fonction de l'ID utilisateur, avec soit des données mock soit l'API
+       * @param {string} userId - L'identifiant de l'utilisateur pour récupérer les données.
+       */
       async function fetchData() {
         try {
         //Utilisation des donénes mock
@@ -64,6 +70,7 @@ export default function User() {
             setUserActivity(currentUserActivity);
             setUserSessionDuration(currentUserSessionDuration);
             setUserPerformance(currentUserPerformance);
+            
         //Else, appel à l'API
           } else {
             const [
@@ -110,7 +117,7 @@ export default function User() {
                         firstname={userData.userInfos.firstName}
                     />
                     <section className="charts">
-                        <article>
+                        <article className="charts__container">
                             <div className="activity-chart">
                                 <ChartDailyActivity 
                                     dataActivity={userActivity.sessions}

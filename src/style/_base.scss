@@ -10,6 +10,39 @@ body {
     
 }
 
+.main {
+  display: flex;
+  @include width-height-max;
+}
+
+.dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 100px 100px 100px;
+  height: 100%;
+}
+
+.charts {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1126px;
+  max-height: 779px;
+  padding-top: 60px;
+
+  &__container {
+      width: 100%;
+  }
+}
+
+.small-charts {
+  @include flex-center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 2%;
+}
+
 .error-page{
     @include flex-column;
     @include font(36px, 500);

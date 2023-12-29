@@ -1,13 +1,13 @@
 .activity-chart {
         @include flex-center;
+        @include border-radius-small;
         position: relative;
         background-color: $tertiary-color;
-        max-width: 835px;
+        min-width: 835px;
         width: 100%;
         max-height: 320px;
         height: 320px;
         padding: 20px;
-        @include border-radius-small;
 
         &__container {
             @include width-height-max;
