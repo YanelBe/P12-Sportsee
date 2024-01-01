@@ -5,16 +5,6 @@ import CustomTooltip from "../CustomTooltip/CustomTooltip"
 //Représenté par un BarChart, le composant montre l'Activité Quotidienne, avec le poids et les calories brûlées chaque jour
 export default function ChartDailyActivity({dataActivity}){
 
-    /**
-     * xAxisTickFormatter - Récupère le jour d'une date complète
-     * @param {string} value - La date complète au format YYYY-MM-DD, par exemple 2020-07-01
-     * @returns {number {1-31}} Le jour de la date
-     */
-    function xAxisTickFormatter(value) {
-        const valueDay = value.split('-')
-        return (Number(valueDay[2]))
-    }
-
     return(
         <div className="activity-chart__container">
             <h2 className="activity-chart__title">Activité quotidienne</h2>
@@ -34,7 +24,6 @@ export default function ChartDailyActivity({dataActivity}){
                     <XAxis 
                         className="activity-chart__XAxis" 
                         dataKey="day" 
-                        tickFormatter={xAxisTickFormatter} 
                         interval="preserveStartEnd"
                         tickSize="0" 
                         tickMargin="25" 

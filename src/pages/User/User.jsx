@@ -3,13 +3,17 @@ import { useNavigate, useParams } from "react-router-dom"
 
 import WelcomeName from "../../components/WelcomeName/WelcomeName"
 import SideBar from "../../components/SideBar/SideBar"
+import KeyDataCard from "../../components/KeyDataCard/KeyDataCard"
 
 import ChartDailyActivity from "../../components/ChartDailyActivity/ChartDailyActivity"
 import ChartPerformance from "../../components/ChartPerformance/ChartPerformance"
 import ChartScore from "../../components/ChartScore/ChartScore"
 import ChartSessionLength from "../../components/ChartSessionLength/ChartSessionLength"
 
-import KeyDataCard from "../../components/KeyDataCard/KeyDataCard"
+import UserActivityData from "../../models/UserActivityData"
+import UserAverageSessionsData from "../../models/UserAverageSessionsData"
+import UserData from "../../models/UserData"
+import UserPerformanceData from "../../models/UserPerformanceData"
 
 import CaloriesIcon from "../../assets/calories-icon.svg"
 import ProteinIcon from "../../assets/protein-icon.svg"
@@ -23,18 +27,17 @@ import { getUserData } from "../../services/fetch"
 export default function User() {
     const navigate = useNavigate();
     const { userId } = useParams();
+    
     const [isError, setIsError] = useState(false);
-  
     const [userData, setUserData] = useState();
     const [userActivity, setUserActivity] = useState();
     const [userSessionDuration, setUserSessionDuration] = useState();
     const [userPerformance, setUserPerformance] = useState();
 
     //Toggle entre données mock et l'appel à l'API
-    const datasMocked = false; 
+    const datasMocked = true; 
   
     useEffect(() => {
-
 
       /**
        * fetchData - Récupère les données en fonction de l'ID utilisateur, avec soit des données mock soit l'API
@@ -66,10 +69,16 @@ export default function User() {
               throw new Error("Données non trouvées !");
             }
   
-            setUserData(currentUserData);
-            setUserActivity(currentUserActivity);
-            setUserSessionDuration(currentUserSessionDuration);
-            setUserPerformance(currentUserPerformance);
+            // Normalisation des données utilisateur
+            const normalizedUserData = new UserData(currentUserData);
+            const normalizedActivityData = new UserActivityData(currentUserActivity);
+            const normalizedSessionDurationData = new UserAverageSessionsData(currentUserSessionDuration);
+            const normalizedPerformanceData = new UserPerformanceData(currentUserPerformance);
+
+            setUserData(normalizedUserData);
+            setUserActivity(normalizedActivityData);
+            setUserSessionDuration(normalizedSessionDurationData);
+            setUserPerformance(normalizedPerformanceData);
 
         //Else, appel à l'API
           } else {
@@ -85,10 +94,16 @@ export default function User() {
               getUserData(userId, "performance"),
             ]);
   
-            setUserData(userData);
-            setUserActivity(userActivity);
-            setUserSessionDuration(userSessionDuration);
-            setUserPerformance(userPerformance);
+            // Normalisation des données utilisateur de l'API
+            const normalizedUserData = new UserData(userData);
+            const normalizedActivityData = new UserActivityData(userActivity);
+            const normalizedSessionDurationData = new UserAverageSessionsData(userSessionDuration);
+            const normalizedPerformanceData = new UserPerformanceData(userPerformance);
+
+            setUserData(normalizedUserData);
+            setUserActivity(normalizedActivityData);
+            setUserSessionDuration(normalizedSessionDurationData);
+            setUserPerformance(normalizedPerformanceData);
           }
   
           setIsError(false);
@@ -113,7 +128,7 @@ export default function User() {
             <div className="dashboard">
                 <div>
                     <WelcomeName 
-                        id={userData.id}
+                        id={userData.userId}
                         firstname={userData.userInfos.firstName}
                     />
                     <section className="charts">
@@ -136,7 +151,7 @@ export default function User() {
                                 </div>
                                 <div  className="score-chart">
                                     <ChartScore 
-                                        dataScore={userData}
+                                        dataScore={userData.score}
                                     />
                                 </div>
                             </div>
@@ -147,25 +162,25 @@ export default function User() {
                                 icon={CaloriesIcon}
                                 keyDataUnit={[`${userData.keyData.calorieCount}`, "kCal"]}
                                 keyDataType="Calories"
-                                id = {userData.id}
+                                id = {userData.userId}
                             />
                             <KeyDataCard
                                 icon={ProteinIcon}
                                 keyDataUnit={[`${userData.keyData.proteinCount}`, "g"]}
                                 keyDataType="Protéines"
-                                id = {userData.id}
+                                id = {userData.userId}
                             />
                             <KeyDataCard
                                 icon={CarbsIcon}
                                 keyDataUnit={[`${userData.keyData.carbohydrateCount}`, "g"]}
                                 keyDataType="Glucides"
-                                id = {userData.id}
+                                id = {userData.userId}
                             />
                             <KeyDataCard
                                 icon={FatIcon}
                                 keyDataUnit={[`${userData.keyData.lipidCount}`, "g"]}
                                 keyDataType="Lipides"
-                                id = {userData.id}
+                                id = {userData.userId}
                             />
                         </aside>
                     </section>

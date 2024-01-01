@@ -1,26 +1,18 @@
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
+import { convertToPercentage } from "../../utils/dataFormat.js"
 import PropTypes from "prop-types";
 
 //Représenté par un RadialBarChart, le composant montre le Score, le pourcentage vers l'objectif
 export default function ChartScore({ dataScore }){
 
-    /**
-     * convertToPercentage - Transforme le score en pourcentage après avoir normalisé les données
-     * @param {number} score - Le score à convertir en pourcentage
-     * @returns {number} Le score converti en pourcentage
-     */
-    function convertToPercentage(score) {
-        return Math.round(score * 100);
-    }
+    const score = dataScore || 0;
 
-    //On normalise les données, en changeant dataScore en score
-    if (dataScore.todayScore !== undefined) {
-        dataScore.score = dataScore.todayScore;
-        delete dataScore.todayScore;
-    }
+    //On créé un tableau d'objets avec la clé "score" pour que Recharts puisse traiter les données dans un objet
+    const data = [{ score: score }];
 
     //On calcule le pourcengate à afficher
-    const scorePercent = convertToPercentage(Number(dataScore.score));
+    const scorePercent = convertToPercentage(Number(score));
+
 
     return (
         <div className="score-chart__container">
@@ -29,7 +21,7 @@ export default function ChartScore({ dataScore }){
                 <RadialBarChart
                     innerRadius="0%"
 					outerRadius="0%"
-                    data={[dataScore]} 
+                    data={data} 
                     startAngle={180} 
                     endAngle={-180}
                     >
@@ -43,7 +35,7 @@ export default function ChartScore({ dataScore }){
 					/>
                     {/*Cette RadialBar affiche la barre rouge de progression*/}
                     <RadialBar 
-                        dataKey="score" 
+                        dataKey="score"
                         barSize={10}
                         cornerRadius={100}
                         fill= "#FF0000"
@@ -60,5 +52,5 @@ export default function ChartScore({ dataScore }){
 };
 
 ChartScore.propTypes={
-    dataScore: PropTypes.object.isRequired
+    dataScore: PropTypes.number.isRequired
 }
